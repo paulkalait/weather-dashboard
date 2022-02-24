@@ -16,28 +16,35 @@
 
 <body>
     <div class="row no-gutters container-fluid">
-    <header class="col-12 jumbotron-fluid ">
-        <h1 class="text-center bg-primary d-flex flex-column p-3 p-lg-3 text-light">Weather Dashboard</h1>
+    <header class="col-12 mb-2 ">
+        <h1 class="text-center  d-flex flex-column p-3 p-lg-3 text-light">Weather Dashboard</h1>
     </header>
 
     <!-- search for city side bar -->
     
     <div class="col-md-3 mt-3 ml-4">
         <form>
-            <label for="search-city" class="form-label">Search for a city:</label>
-            <input id="search-city" class="form-control">
+            <label for="search-city" class="form-label"><strong>Search for a city:</strong></label>
+            <input id="search-city" class="form-control rounded ">
+            <button id="searchbutton" class="form-control mt-3 text-light">Search</button>
         </form>
+        <div id="city-list" class="mt-5">
+          
+        </div>
     </div>
+   
+
+    
 
         <!-- right side column -->
     <div class="col-md-8 ml-4 mt-3">
-        <div id="current-weather-title" class="border rounded">
-            <h2 class="pl-3">Weather</h2>
-            <ul class="list-unstyled p-3" >
-                <li>Temperature:</li>
-                <li>Humidity:</li>
-                <li>Wind Speed:</li>
-                <li>UV Index:</li>
+        <div id="current-weather-title" class="border border-dark rounded">
+            <h2 class="pl-3 mt-3"><strong>Weather</strong></h2>
+            <ul class="list-unstyled " >
+                <li class="details">Temperature:</li>
+                <li class="details">Humidity:</li>
+                <li class="details">Wind Speed:</li>
+                <li class="details">UV Index:</li>
 
             </ul>
         </div>

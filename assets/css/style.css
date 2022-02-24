@@ -1,6 +1,34 @@
+
+header h1{
+    background: rgba(0,16,121, 100);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, #091079 35%, rgba(0,212,255,1) 100%);
+
+}
+.details{
+    padding: 1%;
+    font-size: 1.1vh;
+    font-weight: bold;
+}
+#city-list{
+    border-top: solid 4px darkgray;
+}
+
 .card{
     background-color: #003049;
 }
 .weathercards{
   font-size: 1.1vh;
+}
+.form-label{
+    font-size: 2.00vh;
+}
+#search-city{
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1.3vh;
+}
+#searchbutton{
+    background-color: #147Df5;
+    font-size: 1.3vh;
+    border-radius: 10px;
 }
