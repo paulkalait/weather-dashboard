@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet"
+    href="./assets/css/style.css">
+</head>
+
+
+<body>
+    <div class="row no-gutters container-fluid">
+    <header class="col-12 jumbotron-fluid ">
+        <h1 class="text-center bg-primary d-flex flex-column p-3 p-lg-3 text-light">Weather Dashboard</h1>
+    </header>
+
+    <!-- search for city side bar -->
+    
+    <div class="col-md-3 mt-3 ml-4">
+        <form>
+            <label for="search-city" class="form-label">Search for a city:</label>
+            <input id="search-city" class="form-control">
+        </form>
+    </div>
+
+        <!-- right side column -->
+    <div class="col-md-8 ml-4 mt-3">
+        <div id="current-weather-title" class="border rounded">
+            <h2 class="pl-3">Weather</h2>
+            <ul class="list-unstyled p-3" >
+                <li>Temperature:</li>
+                <li>Humidity:</li>
+                <li>Wind Speed:</li>
+                <li>UV Index:</li>
+
+            </ul>
+        </div>
+        
+        <!-- 5 day forecast -->
+        <div id="five-day-forecast" class="mt-4">
+            <h2><strong>5-Day Forecast:</strong></h2>
+            <div id="fivedaylist" class="d-inline-flex flex-wrap">
+                <!-- display each day as a card (1)-->
+                <div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
+                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <ul class="list-unstyled weathercards ">
+                      
+                        <li class="text text-light p-2">Temp:</li>
+                        <li class="text text-light p-2">Wind:</li>
+                        <li class="text text-light p-2">Humidity:</li>
+                        
+                    </ul>
+                </div>
+                <!-- display each day as a card (2)-->
+                <div class=" card  m-2 p-1" style="width: 14rem; height: 15rem;">
+                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <ul class="list-unstyled weathercards">
+        
+                        <li class="text text-light p-2">Temp:</li>
+                        <li class="text text-light p-2">Wind:</li>
+                        <li class="text text-light p-2">Humidity:</li>
+                        
+                    </ul>
+                </div>
+                <!-- display each day as a card (3)-->
+                <div class=" card m-2 p-1" style="width: 14rem; height: 15rem;">
+                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <ul class="list-unstyled weathercards">
+                        
+                        <li class="text text-light p-2">Temp:</li>
+                        <li class="text text-light p-2">Wind:</li>
+                        <li class="text text-light p-2">Humidity:</li>
+                    </ul>
+                </div>
+                <!-- display each day as a card (4)-->
+                <div class=" card  m-2 p-1" style="width: 14rem; height: 15rem;">
+                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <ul class="list-unstyled weathercards">
+                       
+                        <li class="text text-light p-2">Temp:</li>
+                        <li class="text text-light p-2">Wind:</li>
+                        <li class="text text-light p-2">Humidity:</li>
+                    </ul>
+                </div>
+                <!-- display each day as a card (5) -->
+                <div class="card m-2 p-1" style="width: 14rem; height: 15rem;">
+                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <ul class="list-unstyled weathercards">
+                       
+                        <li class="text text-light p-2">Temp:</li>
+                        <li class="text text-light p-2">Wind:</li>
+                        <li class="text text-light p-2">Humidity:</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+
+
+
+    </div>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
