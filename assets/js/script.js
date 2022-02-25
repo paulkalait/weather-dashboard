@@ -28,8 +28,8 @@ var searchButton = function(){
           console.log(oneCallUrl)
           return response.json()
       })
-      //left off here
-      .then
+      //left off want to display the data of the onecallurl 
+      .then(console.log(oneCallUrl, data))
      
       //insert lat and long variables in the onecall functiom
     // console.log(data)
