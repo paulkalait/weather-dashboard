@@ -30,8 +30,24 @@ var displayFiveDay = function(data){
 }
 
 
+var formSubmitHandler = function(event){
+  event.preventDefault();
+
+  var userInput = cityInput.value.trim();
+
+    if (userInput){
+      getWeatherApi(userInput);
+      cityInput.value = ""
+    }else{
+      alert("Please enter a City")
+    }
+
+}
+
+
 //when i click on search button it will run this fetch request
-var searchCity = function(){
+var getWeatherApi = function(){
+
 
     fetch(apiUrl)
   .then(function (response) {
@@ -66,4 +82,4 @@ var searchCity = function(){
 
 
 
-  cityFormEl.addEventListener("submit", searchCity)
+  cityFormEl.addEventListener("submit", formSubmitHandler)
