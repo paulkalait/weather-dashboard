@@ -10,7 +10,7 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&
 
 
 //when i click on search button it will run this fetch request
-var searchButton = function(){
+// var searchButton = function(){
 
     fetch(apiUrl)
   .then(function (response) {
@@ -25,16 +25,17 @@ var searchButton = function(){
     var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&appid=" + apiKey
       fetch(oneCallUrl)
       .then(function (response){
-          console.log(oneCallUrl)
+          // console.log(response)
           return response.json()
       })
       //left off want to display the data of the onecallurl 
-      .then(console.log(oneCallUrl, data))
-     
+      .then(function(data){
+        console.log(data)
+      })
       //insert lat and long variables in the onecall functiom
     // console.log(data)
   });
-}
+
 
   
 
