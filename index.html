@@ -23,11 +23,12 @@
     <!-- search for city side bar -->
     
     <div class="col-md-3 mt-3 ml-4">
-        <form>
+        <form id="cityform">
             <label for="search-city" class="form-label"><strong>Search for a city:</strong></label>
             <input id="search-city" class="form-control rounded ">
             <button id="searchbutton" class="form-control mt-3 text-light">Search</button>
         </form>
+        <!-- container displaying recent city searches  -->
         <div id="city-list" class="mt-5">
           
         </div>
@@ -39,8 +40,8 @@
         <!-- right side column -->
     <div class="col-md-8 ml-4 mt-3">
         <div id="current-weather-title" class="border border-dark rounded">
-            <h2 class="pl-3 mt-3"><strong>Weather</strong></h2>
-            <ul class="list-unstyled " >
+            <h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather:</strong></h2>
+            <ul id="currentWeatherDetails" class="list-unstyled " >
                 <li class="details">Temperature:</li>
                 <li class="details">Humidity:</li>
                 <li class="details">Wind Speed:</li>
@@ -55,7 +56,7 @@
             <div id="fivedaylist" class="d-inline-flex flex-wrap">
                 <!-- display each day as a card (1)-->
                 <div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
-                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <h2 class="weatherdate text-light"></h2>
                     <ul class="list-unstyled weathercards ">
                       
                         <li class="text text-light p-2">Temp:</li>
@@ -66,7 +67,7 @@
                 </div>
                 <!-- display each day as a card (2)-->
                 <div class=" card  m-2 p-1" style="width: 14rem; height: 15rem;">
-                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <h2 class="weatherdate text-light"></h2>
                     <ul class="list-unstyled weathercards">
         
                         <li class="text text-light p-2">Temp:</li>
@@ -77,7 +78,7 @@
                 </div>
                 <!-- display each day as a card (3)-->
                 <div class=" card m-2 p-1" style="width: 14rem; height: 15rem;">
-                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <h2 class="weatherdate text-light"></h2>
                     <ul class="list-unstyled weathercards">
                         
                         <li class="text text-light p-2">Temp:</li>
@@ -87,7 +88,7 @@
                 </div>
                 <!-- display each day as a card (4)-->
                 <div class=" card  m-2 p-1" style="width: 14rem; height: 15rem;">
-                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <h2 class="weatherdate text-light"></h2>
                     <ul class="list-unstyled weathercards">
                        
                         <li class="text text-light p-2">Temp:</li>
@@ -97,7 +98,7 @@
                 </div>
                 <!-- display each day as a card (5) -->
                 <div class="card m-2 p-1" style="width: 14rem; height: 15rem;">
-                    <h2 class="weatherdate text-light"> Date:</h2>
+                    <h2 class="weatherdate text-light"></h2>
                     <ul class="list-unstyled weathercards">
                        
                         <li class="text text-light p-2">Temp:</li>
