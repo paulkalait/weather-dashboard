@@ -26,12 +26,12 @@ var weatherDateEl = document.querySelector(".weatherdate")
 
 var weatherDashboard = function(data){
  
-  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather:${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
+  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
   <ul id="currentWeatherDetails" class="list-unstyled " >
-      <li class="details">Temperature:${data.current.temp}</li>
-      <li class="details">Humidity:${data.current.humidity}</li>
-      <li class="details">Wind Speed:${data.current.wind_speed}</li>
-      <li class="details">UVI Index:${data.current.uvi}</li>
+      <li class="details">Temperature: ${data.current.temp}</li>
+      <li class="details">Humidity: ${data.current.humidity}</li>
+      <li class="details">Wind Speed: ${data.current.wind_speed}</li>
+      <li class="details">UVI Index: ${data.current.uvi}</li>
 
   </ul> `
  currentWeatherTitle.innerHTML = weatherContainer
@@ -43,17 +43,17 @@ var displayFiveDay = function(data){
    var cardContainer = ``
     for(var i = 0; i < data.daily.length; i++){
 
-      var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
+      var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 14rem;">
       <h2 class="weatherdate text-light"></h2>
       <ul class="list-unstyled weathercards ">
-      <li class="text text-light p-2">Temp:${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
-          <li class="text text-light p-2">Temp:${data.daily[i].temp.day}</li>
-          <li class="text text-light p-2">Wind:${data.daily[i].wind_speed}</li>
-          <li class="text text-light p-2">Humidity:${data.daily[i].humidity}</li>
+      <li class="text text-light p-2">Temp: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
+          <li class="text text-light p-2"> ${data.daily[i].weather.icon}</li>
+          <li class="text text-light p-2">Temp: ${data.daily[i].temp.day}</li>
+          <li class="text text-light p-2">Wind: ${data.daily[i].wind_speed}</li>
+          <li class="text text-light p-2">Humidity: ${data.daily[i].humidity}</li>
       </ul>
       </div>`
       cardContainer += cardQuery
-     
     }
     fiveDayCardsContainerEl.innerHTML = cardContainer
 }
@@ -110,7 +110,7 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
   });
 }
 
-var local
+
 
   
 
