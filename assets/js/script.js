@@ -26,16 +26,15 @@ var weatherDateEl = document.querySelector(".weatherdate")
 
 var weatherDashboard = function(data){
  
-  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather:</strong></h2>
+  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather:${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
   <ul id="currentWeatherDetails" class="list-unstyled " >
-      <li class="details">Temperature:</li>
-      <li class="details">Humidity:</li>
-      <li class="details">Wind Speed:</li>
-      <li class="details">UV Index:</li>
+      <li class="details">Temperature:${data.current.temp}</li>
+      <li class="details">Humidity:${data.current.humidity}</li>
+      <li class="details">Wind Speed:${data.current.wind_speed}</li>
+      <li class="details">UVI Index:${data.current.uvi}</li>
 
   </ul> `
  currentWeatherTitle.innerHTML = weatherContainer
-
 }
 
 //display url data on inner html 
@@ -102,11 +101,16 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
         //call display function here to display five day forecast and current weather dom elements?
       displayFiveDay(data);
 
+
+      weatherDashboard(data)
+
       })
       //insert lat and long variables in the onecall functiom
     // console.log(data)
   });
 }
+
+var local
 
   
 

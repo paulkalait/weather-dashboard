@@ -6,7 +6,7 @@ header h1{
 }
 .details{
     padding: 1%;
-    font-size: 1.1vh;
+    font-size: 1.5vh;
     font-weight: bold;
 }
 #city-list{
@@ -17,7 +17,7 @@ header h1{
     background-color: #003049;
 }
 .weathercards{
-  font-size: 1.1vh;
+  font-size: 1.5vh;
 }
 .form-label{
     font-size: 2.00vh;
