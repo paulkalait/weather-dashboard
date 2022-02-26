@@ -6,10 +6,13 @@ var long;
 //form to search city
 var cityFormEl = document.querySelector("#cityform")
 
+//five day weather
+var fiveDayCardsContainerEl = document.querySelector("#fivedaylist")
 //cityInput
 var cityInput = document.querySelector("#search-city")
 //selecting the current weather date header in container
 var currentWeatherDateEl = document.querySelector("#currentweatherdate")
+var currentWeatherTitle = document.querySelector("#current-weather-title")
 
 //current weather details ul on html (Temperature, humidity, Wind Speed, Uv Index)
 var currentWeatherDetailsEl = document.querySelector("#currentWeatherDetails")
@@ -19,14 +22,41 @@ var weatherDateEl = document.querySelector(".weatherdate")
 //one day gives lat long  
 // var citySearch = "boston";
 //gives you the city look up 
-var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&appid=" + apiKey
+// var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&appid=" + apiKey
+
+var weatherDashboard = function(data){
+ 
+  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather:</strong></h2>
+  <ul id="currentWeatherDetails" class="list-unstyled " >
+      <li class="details">Temperature:</li>
+      <li class="details">Humidity:</li>
+      <li class="details">Wind Speed:</li>
+      <li class="details">UV Index:</li>
+
+  </ul> `
+ currentWeatherTitle.innerHTML = weatherContainer
+
+}
 
 //display url data on inner html 
 var displayFiveDay = function(data){
 
-    for(var i = 0; i < data.length; i++){
+   var cardContainer = ``
+    for(var i = 0; i < data.daily.length; i++){
 
+      var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
+      <h2 class="weatherdate text-light"></h2>
+      <ul class="list-unstyled weathercards ">
+      <li class="text text-light p-2">Temp:${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
+          <li class="text text-light p-2">Temp:${data.daily[i].temp.day}</li>
+          <li class="text text-light p-2">Wind:${data.daily[i].wind_speed}</li>
+          <li class="text text-light p-2">Humidity:${data.daily[i].humidity}</li>
+      </ul>
+      </div>`
+      cardContainer += cardQuery
+     
     }
+    fiveDayCardsContainerEl.innerHTML = cardContainer
 }
 
 
@@ -34,7 +64,7 @@ var formSubmitHandler = function(event){
   event.preventDefault();
 
   var userInput = cityInput.value.trim();
-
+    
     if (userInput){
       getWeatherApi(userInput);
       cityInput.value = ""
@@ -46,9 +76,9 @@ var formSubmitHandler = function(event){
 
 
 //when i click on search button it will run this fetch request
-var getWeatherApi = function(){
+var getWeatherApi = function(userInput){
 
-
+var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=" + apiKey
     fetch(apiUrl)
   .then(function (response) {
     // console.log(apiUrl)
@@ -62,7 +92,7 @@ var getWeatherApi = function(){
     var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&appid=" + apiKey
       fetch(oneCallUrl)
       .then(function (response){
-          // console.log(response)
+          console.log(response)
           return response.json()
       })
       //left off want to display the data of the onecallurl 
@@ -70,7 +100,7 @@ var getWeatherApi = function(){
         console.log(data)
 
         //call display function here to display five day forecast and current weather dom elements?
-        // ->
+      displayFiveDay(data);
 
       })
       //insert lat and long variables in the onecall functiom
