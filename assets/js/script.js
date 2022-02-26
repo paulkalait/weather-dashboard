@@ -14,6 +14,8 @@ var cityInput = document.querySelector("#search-city")
 var currentWeatherDateEl = document.querySelector("#currentweatherdate")
 var currentWeatherTitle = document.querySelector("#current-weather-title")
 
+//city list container
+var saveCityContainer = document.querySelector("#city-list")
 //current weather details ul on html (Temperature, humidity, Wind Speed, Uv Index)
 var currentWeatherDetailsEl = document.querySelector("#currentWeatherDetails")
 
@@ -23,6 +25,11 @@ var weatherDateEl = document.querySelector(".weatherdate")
 // var citySearch = "boston";
 //gives you the city look up 
 // var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&appid=" + apiKey
+
+var saveCity = function(){
+  saveCityList = `<div class="saved-cities>
+    <a>`
+}
 
 var weatherDashboard = function(data){
  
