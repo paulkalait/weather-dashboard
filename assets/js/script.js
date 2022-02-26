@@ -26,9 +26,23 @@ var weatherDateEl = document.querySelector(".weatherdate")
 //gives you the city look up 
 // var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&appid=" + apiKey
 
+
+// var cityArray = JSON.parse(localStorage.getItem("cities-list")) || []
+
+// console.log(cityArray)
+
 var saveCity = function(){
-  saveCityList = `<div class="saved-cities>
-    <a>`
+  var i = 0
+  cityArray.push(cityInput.val().trim())
+      for(; i < cityArray.length; i ++){
+        var eachNewCity = document.createElement("button");
+        eachNewCity.setAttribute("style","padding: 3px; margin: 2%; font-size: 2.00vh" )
+        eachNewCity.className = "each-new-city"
+        eachNewCity.textContent = cityArray[i]
+        saveCityContainer.appendChild(eachNewCity);
+    }
+    
+  localStorage.setItem("cities-list", cityArray )
 }
 
 var weatherDashboard = function(data){
@@ -36,8 +50,8 @@ var weatherDashboard = function(data){
   var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
   <ul id="currentWeatherDetails" class="list-unstyled " >
       <li class="details">Temperature: ${data.current.temp}</li>
-      <li class="details">Humidity: ${data.current.humidity}</li>
-      <li class="details">Wind Speed: ${data.current.wind_speed}</li>
+      <li class="details">Humidity: ${data.current.humidity}%</li>
+      <li class="details">Wind Speed: ${data.current.wind_speed} MPH</li>
       <li class="details">UVI Index: ${data.current.uvi}</li>
 
   </ul> `
@@ -50,14 +64,14 @@ var displayFiveDay = function(data){
    var cardContainer = ``
     for(var i = 0; i < data.daily.length; i++){
 
-      var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 14rem;">
+      var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
       <h2 class="weatherdate text-light"></h2>
       <ul class="list-unstyled weathercards ">
       <li class="text text-light p-2">Temp: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
           <li class="text text-light p-2"> ${data.daily[i].weather.icon}</li>
           <li class="text text-light p-2">Temp: ${data.daily[i].temp.day}</li>
-          <li class="text text-light p-2">Wind: ${data.daily[i].wind_speed}</li>
-          <li class="text text-light p-2">Humidity: ${data.daily[i].humidity}</li>
+          <li class="text text-light p-2">Wind: ${data.daily[i].wind_speed} MPH</li>
+          <li class="text text-light p-2">Humidity: ${data.daily[i].humidity}%</li>
       </ul>
       </div>`
       cardContainer += cardQuery
@@ -69,6 +83,8 @@ var displayFiveDay = function(data){
 var formSubmitHandler = function(event){
   event.preventDefault();
 
+  localStorage.setItem("cities-list", [])
+
   var userInput = cityInput.value.trim();
     
     if (userInput){
@@ -77,7 +93,7 @@ var formSubmitHandler = function(event){
     }else{
       alert("Please enter a City")
     }
-
+    // saveCity();
 }
 
 
