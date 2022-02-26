@@ -4,8 +4,9 @@ var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon=
 var lat;
 var long;
 //form to search city
+var searchHistoryList = document.querySelectorAll(".each-new-city")
 var cityFormEl = document.querySelector("#cityform")
-
+var userInput;
 //five day weather
 var fiveDayCardsContainerEl = document.querySelector("#fivedaylist")
 //cityInput
@@ -27,22 +28,30 @@ var weatherDateEl = document.querySelector(".weatherdate")
 // var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&appid=" + apiKey
 
 
-// var cityArray = JSON.parse(localStorage.getItem("cities-list")) || []
-
-// console.log(cityArray)
+var cityArray = JSON.parse(localStorage.getItem("cities-list")) || []
 
 var saveCity = function(){
+
   var i = 0
-  cityArray.push(cityInput.val().trim())
+  if(cityArray.length === 0) {
+    cityArray = []
+  }
+
+  if(!cityArray.includes(userInput)) {
+    cityArray.push(userInput)
+  }
+
+  saveCityContainer.innerHTML = '';
+
       for(; i < cityArray.length; i ++){
         var eachNewCity = document.createElement("button");
         eachNewCity.setAttribute("style","padding: 3px; margin: 2%; font-size: 2.00vh" )
+        eachNewCity.setAttribute('data-name', cityArray[i])
         eachNewCity.className = "each-new-city"
         eachNewCity.textContent = cityArray[i]
         saveCityContainer.appendChild(eachNewCity);
     }
-    
-  localStorage.setItem("cities-list", cityArray )
+  localStorage.setItem("cities-list", JSON.stringify(cityArray))
 }
 
 var weatherDashboard = function(data){
@@ -62,13 +71,13 @@ var weatherDashboard = function(data){
 var displayFiveDay = function(data){
 
    var cardContainer = ``
-    for(var i = 0; i < data.daily.length; i++){
+    for(var i = 0; i < 5; i++){
 
       var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
       <h2 class="weatherdate text-light"></h2>
       <ul class="list-unstyled weathercards ">
-      <li class="text text-light p-2">Temp: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
-          <li class="text text-light p-2"> ${data.daily[i].weather.icon}</li>
+      <li class="text text-light p-2">Time: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
+          <img class="text text-light p-2" src="https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png">;</img>
           <li class="text text-light p-2">Temp: ${data.daily[i].temp.day}</li>
           <li class="text text-light p-2">Wind: ${data.daily[i].wind_speed} MPH</li>
           <li class="text text-light p-2">Humidity: ${data.daily[i].humidity}%</li>
@@ -83,9 +92,8 @@ var displayFiveDay = function(data){
 var formSubmitHandler = function(event){
   event.preventDefault();
 
-  localStorage.setItem("cities-list", [])
 
-  var userInput = cityInput.value.trim();
+  userInput = cityInput.value.trim();
     
     if (userInput){
       getWeatherApi(userInput);
@@ -93,7 +101,7 @@ var formSubmitHandler = function(event){
     }else{
       alert("Please enter a City")
     }
-    // saveCity();
+    saveCity();
 }
 
 
@@ -114,12 +122,10 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
     var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&appid=" + apiKey
       fetch(oneCallUrl)
       .then(function (response){
-          console.log(response)
           return response.json()
       })
       //left off want to display the data of the onecallurl 
       .then(function(data){
-        console.log(data)
 
         //call display function here to display five day forecast and current weather dom elements?
       displayFiveDay(data);
@@ -135,8 +141,24 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
 
 
 
-  
+var formSubmitHandlerHistory = function(event){
+  console.log("started")
+  event.preventDefault();
+
+  btn = event.target
+  console.log(btn)
+  userInput = btn.getAttribute("data-name")
+    
+    if (userInput){
+      getWeatherApi(userInput);
+      cityInput.value = ""
+    }else{
+      alert("Please enter a City")
+    }
+    saveCity();
+}
 
 
+saveCityContainer.addEventListener("click", formSubmitHandlerHistory)
 
-  cityFormEl.addEventListener("submit", formSubmitHandler)
+cityFormEl.addEventListener("submit", formSubmitHandler)

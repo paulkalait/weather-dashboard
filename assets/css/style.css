@@ -11,6 +11,10 @@ header h1{
 }
 #city-list{
     border-top: solid 4px darkgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .card{
@@ -36,4 +40,10 @@ header h1{
     padding: 3px;
     margin-top: 2%;
     font-size: 2.00vh;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.none{
+    display: none;
 }
