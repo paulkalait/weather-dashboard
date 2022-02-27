@@ -56,7 +56,7 @@ var saveCity = function(){
 
 var weatherDashboard = function(data){
  
-  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
+  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</strong></h2>
   <ul id="currentWeatherDetails" class="list-unstyled " >
       <li class="details">Temperature: ${data.current.temp}</li>
       <li class="details">Humidity: ${data.current.humidity}%</li>
@@ -69,7 +69,7 @@ var weatherDashboard = function(data){
 
 //display url data on inner html 
 var displayFiveDay = function(data){
-
+    
    var cardContainer = ``
     for(var i = 0; i < 5; i++){
 
@@ -126,7 +126,7 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
       })
       //left off want to display the data of the onecallurl 
       .then(function(data){
-
+        console.log(data)
         //call display function here to display five day forecast and current weather dom elements?
       displayFiveDay(data);
 
@@ -138,8 +138,6 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
     // console.log(data)
   });
 }
-
-
 
 var formSubmitHandlerHistory = function(event){
   console.log("started")
