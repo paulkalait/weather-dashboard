@@ -1,3 +1,4 @@
+
 var apiKey = "aa4bb6474b2954b1c9b7ca7e977ee0df"
 //gives you the lat and long
 var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid=" + apiKey
@@ -22,11 +23,6 @@ var currentWeatherDetailsEl = document.querySelector("#currentWeatherDetails")
 
 //query selector targeting the header dates of the 5 day cards 
 var weatherDateEl = document.querySelector(".weatherdate")
-//one day gives lat long  
-// var citySearch = "boston";
-//gives you the city look up 
-// var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput + "&appid=" + apiKey
-
 
 var cityArray = JSON.parse(localStorage.getItem("cities-list")) || []
 
@@ -56,7 +52,7 @@ var saveCity = function(){
 
 var weatherDashboard = function(data){
  
-  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</strong></h2>
+  var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
   <ul id="currentWeatherDetails" class="list-unstyled " >
       <li class="details">Temperature: ${data.current.temp}</li>
       <li class="details">Humidity: ${data.current.humidity}%</li>
@@ -69,14 +65,14 @@ var weatherDashboard = function(data){
 
 //display url data on inner html 
 var displayFiveDay = function(data){
-    
+
    var cardContainer = ``
     for(var i = 0; i < 5; i++){
 
       var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
       <h2 class="weatherdate text-light"></h2>
       <ul class="list-unstyled weathercards ">
-      <li class="text text-light p-2">Time: ${moment().utc(data.daily[i].dt, "DD-MM-YYYY")}</li>
+      <li class="text text-light p-2">Time: ${moment.unix(data.daily[i].dt).format("MMMM Do")}</li>
           <img class="text text-light p-2" src="https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png">;</img>
           <li class="text text-light p-2">Temp: ${data.daily[i].temp.day}</li>
           <li class="text text-light p-2">Wind: ${data.daily[i].wind_speed} MPH</li>
@@ -119,7 +115,7 @@ var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&a
   .then(function (data) {
     var lat = data[0].lat
     var long = data[0].lon
-    var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&appid=" + apiKey
+    var oneCallUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey
       fetch(oneCallUrl)
       .then(function (response){
           return response.json()
