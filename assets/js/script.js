@@ -54,7 +54,7 @@ var weatherDashboard = function(data){
  
   var weatherContainer = `<h2 id="currentweatherdate" class="pl-3 mt-3"><strong>Weather: ${moment().utc(data.current.dt, "DD-MM-YYYY")}</strong></h2>
   <ul id="currentWeatherDetails" class="list-unstyled " >
-      <li class="details">Temperature: ${data.current.temp}</li>
+      <li class="details">Temperature: ${data.current.temp} °F</li>
       <li class="details">Humidity: ${data.current.humidity}%</li>
       <li class="details">Wind Speed: ${data.current.wind_speed} MPH</li>
       <li class="details">UVI Index: ${data.current.uvi}</li>
@@ -72,9 +72,9 @@ var displayFiveDay = function(data){
       var cardQuery = `<div class="card  m-2 p-1" style="width: 14rem; height: 15rem;">
       <h2 class="weatherdate text-light"></h2>
       <ul class="list-unstyled weathercards ">
-      <li class="text text-light p-2">Time: ${moment.unix(data.daily[i].dt).format("MMMM Do")}</li>
+      <li class="text text-light p-2">Date: ${moment.unix(data.daily[i].dt).format("MMMM Do")}</li>
           <img class="text text-light p-2" src="https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png">;</img>
-          <li class="text text-light p-2">Temp: ${data.daily[i].temp.day}</li>
+          <li class="text text-light p-2">Temp: ${data.daily[i].temp.day} °F</li>
           <li class="text text-light p-2">Wind: ${data.daily[i].wind_speed} MPH</li>
           <li class="text text-light p-2">Humidity: ${data.daily[i].humidity}%</li>
       </ul>
