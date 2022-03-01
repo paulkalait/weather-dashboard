@@ -104,7 +104,7 @@ var formSubmitHandler = function(event){
 //when i click on search button it will run this fetch request
 var getWeatherApi = function(userInput){
 
-var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=" + apiKey
+var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=" + apiKey
     fetch(apiUrl)
   .then(function (response) {
     // console.log(apiUrl)
